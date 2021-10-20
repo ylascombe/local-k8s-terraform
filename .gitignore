@@ -1,0 +1,8 @@
+terraform/01-provision/.terraform*
+terraform/01-provision/.terraform
+**/.terraform
+**/*.tfstate*
+terraform/01-provision/demo-config
+*.pem
+**/.terraform.lock.hcl
+env.sh
