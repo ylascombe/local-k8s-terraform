@@ -1,0 +1,18 @@
+# sourced from: https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/guides/getting-started/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo
+  namespace: test-kong-app
+spec:
+  ingressClassName: kong
+  rules:
+  - http:
+      paths:
+      - path: /foo
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: echo
+            port:
+              number: 80
