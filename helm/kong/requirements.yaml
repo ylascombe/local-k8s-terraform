@@ -1,0 +1,5 @@
+---
+dependencies:
+  - name: kong
+    version: "v2.5.0"
+    repository: "https://charts.konghq.com"
