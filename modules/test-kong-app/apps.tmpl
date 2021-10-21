@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: kong
+  namespace: argocd-system
+spec:
+  # TODO change me
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  sourceRepos:
+  - https://github.com/ylascombe/local-k8s-terraform
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-kong-app
+  namespace: argocd-system
+spec:
+  destination:
+    name: ''
+    namespace: test-kong-app
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: helm/test-kong-app
+    repoURL: 'https://github.com/ylascombe/local-k8s-terraform'
+    targetRevision: feat/test-kong-app
+#   helm:
+#     valueFiles:
+#       - values.yaml
+  project: kong
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
