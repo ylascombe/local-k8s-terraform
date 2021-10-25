@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-kong-app
+  namespace: test-kong-app
+  annotations:
+    # kubernetes.io/ingress.class: kong
+    cert-manager.io/cluster-issuer: kong-ingress-controller
+    kubernetes.io/tls-acme: "true"
+    # konghq.com/plugins: kong-spec-expose
+    konghq.com/plugins: basic-auth
+    # konghq.com/plugins: ip-restriction
+spec:
+  ingressClassName: kong
+  rules:
+    - host: kongapp.tree.canop-e.eu
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: echo
+                port:
+                  number: 80
+  tls:
+  - hosts:
+    - kongapp.tree.canop-e.eu
+    secretName: test-kong-app

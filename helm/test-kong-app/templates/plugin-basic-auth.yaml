@@ -1,0 +1,9 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: basic-auth
+  namespace: test-kong-app
+config: 
+  hide_credentials: true
+plugin: basic-auth
+consumerRef: kong-consumer-basic-auth
