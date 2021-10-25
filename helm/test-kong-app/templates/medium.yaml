@@ -1,0 +1,82 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin
+  labels:
+    app: httpbin
+  namespace: kong-test-medium
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    app: httpbin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+  namespace: kong-test-medium
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin
+  template:
+    metadata:
+      labels:
+        app: httpbin
+    spec:
+      containers:
+      - image: docker.io/kennethreitz/httpbin
+        name: httpbin
+        ports:
+        - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo
+  namespace: kong-test-medium
+  annotations:
+    konghq.com/strip-path: "true"
+    konghq.com/plugins: httpbin-auth
+spec:
+  ingressClassName: kong
+  rules:
+  - host: kongappmedium.tree.canop-e.eu
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: httpbin
+          servicePort: 80
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: httpbin-auth
+  namespace: kong-test-medium
+plugin: key-auth
+---
+# kubectl create secret generic harry-apikey  --from-literal=kongCredType=key-auth  --from-literal=key=my-sooper-secret-key --dry-run=client -oyaml
+apiVersion: v1
+data:
+  key: bXktc29vcGVyLXNlY3JldC1rZXk=
+  kongCredType: a2V5LWF1dGg=
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: harry-apikey
+  namespace: kong-test-medium
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: harry
+  namespace: kong-test-medium
+  annotations:
+    kubernetes.io/ingress.class: kong
+username: harry
