@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-stream
+  namespace: argocd-system
+spec:
+  destination:
+    namespace: redis
+    server: https://kubernetes.default.svc
+  project: redis
+  source:
+    chart: redis
+    helm:
+      parameters:
+      - name: auth.password
+        value: pleasechangeme
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 15.5.2
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

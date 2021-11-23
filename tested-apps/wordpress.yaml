@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: wordpress
+  namespace: argocd-system
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  sourceRepos:
+  - https://charts.bitnami.com/bitnami
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wordpress
+  namespace: argocd
+spec:
+  destination:
+    namespace: wordpress
+    server: https://kubernetes.default.svc
+  project: wordpress_project
+  source:
+    path: bitnami/wordpress
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: '5.8.2'
+#      valueFiles:
+#        - values.yaml
