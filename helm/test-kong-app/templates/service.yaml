@@ -6,6 +6,8 @@ metadata:
     app: echo
   name: echo
   namespace: test-kong-app
+  # annotations:
+  #   konghq.com/plugins: kong-spec-expose
 spec:
   ports:
   - port: 8080
