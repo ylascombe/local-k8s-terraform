@@ -16,3 +16,21 @@ spec:
             name: echo
             port:
               number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-demo
+  namespace: test-kong-app
+spec:
+  rules:
+    - host: myapp.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: echo
+                port:
+                  number: 80
