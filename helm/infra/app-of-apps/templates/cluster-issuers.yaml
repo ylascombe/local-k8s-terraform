@@ -1,0 +1,24 @@
+{{- if .Values.clusterIssuers -}}
+{{- if .Values.clusterIssuers.enabled -}}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-issuers
+  namespace: argocd-system
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: helm/infra/cluster-issuers
+    repoURL: https://github.com/ylascombe/local-k8s-terraform
+    targetRevision: app-of-apps
+    helm:
+      valueFiles:
+        - {{ .Values.clusterIssuers.valueFile }}
+  project: tools
+  syncPolicy:
+    automated: {}
+  
+{{- end }}
+{{- end }}

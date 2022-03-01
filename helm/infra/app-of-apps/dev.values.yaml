@@ -10,6 +10,10 @@ argocd:
 certManager:
   enabled: true
 
+clusterIssuers:
+  enabled: true
+  valueFile: dev.values.yaml
+
 sealedSecrets:
   enabled: true
   valueFile: dev.values.yaml
