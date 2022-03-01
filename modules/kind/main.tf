@@ -1,7 +1,7 @@
 resource "kind_cluster" "local" {
   name            = "demo"
   wait_for_ready  = true
-  node_image      = "kindest/node:v1.21.1"
+  node_image      = "kindest/node:v1.22.5"
   kubeconfig_path = "../../kube_config.yaml"
 
   kind_config {
