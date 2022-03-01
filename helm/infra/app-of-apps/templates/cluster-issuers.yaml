@@ -12,7 +12,7 @@ spec:
   source:
     path: helm/infra/cluster-issuers
     repoURL: https://github.com/ylascombe/local-k8s-terraform
-    targetRevision: app-of-apps
+    targetRevision: main
     helm:
       valueFiles:
         - {{ .Values.clusterIssuers.valueFile }}

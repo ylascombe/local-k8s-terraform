@@ -38,7 +38,7 @@ spec:
       - dev.values.yaml
     path: helm/apps/app-of-apps
     repoURL: https://github.com/ylascombe/local-k8s-terraform
-    targetRevision: app-of-apps
+    targetRevision: main
   syncPolicy:
     automated: {}
     syncOptions:
