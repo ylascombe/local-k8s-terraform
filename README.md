@@ -32,10 +32,6 @@ terraform init
 terraform apply
 # argocd resources deployed to deploy cert-manager and ingress controller (kong or nginx)
 
-cd ../04-apps-kong
-terraform init
-terraform apply
-# test kong app should be deployed
 ```
 
 ## Access to ArgoCD
