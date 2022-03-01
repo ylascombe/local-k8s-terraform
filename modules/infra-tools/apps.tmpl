@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: tools
+  namespace: argocd-system
+spec:
+  # TODO change me
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  sourceRepos:
+  - https://github.com/ylascombe/local-k8s-terraform
+  - https://charts.jetstack.io
+  - %{ if ingress_controller_type == "kong" }https://charts.konghq.com%{ else }https://github.com/kubernetes/ingress-nginx/%{ endif }
+  - https://gitlab.bootstrap.g2g.platform.thalesdigital.io/bootstrap/*.git
+  - https://bitnami-labs.github.io/sealed-secrets
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: infra-tools-${cluster_name}
+  namespace: argocd-system
+spec:
+  destination:
+    name: ''
+    namespace: argocd-system
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: helm/infra/app-of-apps
+    repoURL: https://github.com/ylascombe/local-k8s-terraform
+    targetRevision: app-of-apps
+    helm:
+      valueFiles:
+        - dev.values.yaml
+      parameters:
+      - name: server
+        value: 'https://kubernetes.default.svc'
+  project: tools
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

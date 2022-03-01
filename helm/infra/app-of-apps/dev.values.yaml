@@ -1,0 +1,15 @@
+---
+cluster_name: dev
+
+apps:
+  enabled: true
+
+argocd:
+  enabled: false
+
+certManager:
+  enabled: true
+
+# sealedSecrets:
+#   enabled: true
+#   valueFile: dev.values.yaml

@@ -1,4 +1,0 @@
-https://kubernetes.github.io/ingress-nginx/examples/auth/basic/
-
-htpasswd -c auth canope
-kubectl create secret generic basic-auth-canope -n test-kong-app --from-file=auth --dry-run=client -oyaml > basic-auth-secret.yaml

@@ -30,9 +30,9 @@ spec:
     server: https://kubernetes.default.svc
   project: tools
   source:
-    path: helm/kong
+    path: helm/infra/kong
     repoURL: 'https://github.com/ylascombe/local-k8s-terraform'
-    targetRevision: main
+    targetRevision: app-of-apps
     helm:
       valueFiles:
         - values.yaml
@@ -74,9 +74,9 @@ spec:
     namespace: cert-manager
     server: 'https://kubernetes.default.svc'
   source:
-    path: helm/cert-manager
+    path: helm/infra/cert-manager
     repoURL: 'https://github.com/ylascombe/local-k8s-terraform'
-    targetRevision: main
+    targetRevision: app-of-apps
     helm:
       valueFiles:
         - values.yaml
