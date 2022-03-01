@@ -1,0 +1,21 @@
+{{- if .Values.argocd -}}
+{{- if .Values.argocd.enabled -}}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-{{ .Values.clusterName }}
+  namespace: argocd-system
+spec:
+  destination:
+    namespace: argocd-system
+    server: {{ .Values.server }}
+  project: {{ .Values.clusterName }}
+  source:
+    path: argocd
+    repoURL: https://github.com/ylascombe/local-k8s-terraform
+    targetRevision: main
+  syncPolicy:
+    retry: {}
+{{- end }}
+{{- end }}
