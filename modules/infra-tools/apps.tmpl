@@ -43,5 +43,5 @@ spec:
         value: 'https://kubernetes.default.svc'
   project: tools
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
+    automated:
+      prune: true
