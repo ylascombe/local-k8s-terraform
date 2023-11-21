@@ -1,7 +1,7 @@
 resource "kind_cluster" "local" {
   name            = "demo"
   wait_for_ready  = true
-  node_image      = "kindest/node:v1.22.5"
+  node_image      = var.node_image
   kubeconfig_path = "../../kube_config.yaml"
 
   kind_config {
@@ -33,8 +33,4 @@ EOT
       ]
     }
   }
-}
-
-output "kubeconfig" {
-  value = kind_cluster.local.kubeconfig
 }
