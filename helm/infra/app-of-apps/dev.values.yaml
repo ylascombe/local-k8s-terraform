@@ -17,3 +17,6 @@ clusterIssuers:
 sealedSecrets:
   enabled: true
   valueFile: dev.values.yaml
+
+prometheusStack:
+  enabled: true

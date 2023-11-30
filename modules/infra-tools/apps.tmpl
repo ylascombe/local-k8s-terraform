@@ -20,6 +20,7 @@ spec:
   - %{ if ingress_controller_type == "kong" }https://charts.konghq.com%{ else }https://github.com/kubernetes/ingress-nginx/%{ endif }
   - https://gitlab.bootstrap.g2g.platform.thalesdigital.io/bootstrap/*.git
   - https://bitnami-labs.github.io/sealed-secrets
+  - https://prometheus-community.github.io/helm-charts
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -34,7 +35,7 @@ spec:
   source:
     path: helm/infra/app-of-apps
     repoURL: https://github.com/ylascombe/local-k8s-terraform
-    targetRevision: main
+    targetRevision: feat_prometheus_stack
     helm:
       valueFiles:
         - dev.values.yaml
