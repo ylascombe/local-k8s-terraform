@@ -11,6 +11,7 @@ resource "helm_release" "argocd_system" {
   namespace        = "argocd-system"
 
   values = [
-    data.template_file.argocd_values.rendered
+    templatefile("${path.module}/helm_values.tmpl", {argocd_admin_password = var.argocd_admin_password} )
   ]
 }
+

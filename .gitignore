@@ -8,3 +8,7 @@ env.sh
 helm/cert-manager/templates/tls.crt
 helm/cert-manager/templates/tls.key
 helm/cert-manager/templates/secret.yaml
+helm/infra/cert-manager/templates/tls.crt
+helm/infra/cert-manager/templates/tls.key
+helm/infra/cert-manager/templates/secret.yaml
+kube_config.yaml

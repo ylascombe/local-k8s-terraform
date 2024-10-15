@@ -1,6 +1,11 @@
 
 locals {
-  apps = split("\n---\n", data.template_file.apps_infra_yaml.rendered)
+  apps = split("\n---\n", templatefile("${path.module}/apps.tmpl",{
+    apps_infra_git_url      = var.apps_infra_git_url
+    ingress_controller_type = var.ingress_controller_type
+
+    cluster_name = var.cluster_name
+  })) 
 }
 
 resource "kubernetes_manifest" "argocd_apps" {
