@@ -37,7 +37,7 @@ spec:
         value: https://kubernetes.default.svc
       valueFiles:
       - dev.values.yaml
-    path: helm/apps/app-of-apps
+    path: helm/infra/app-of-apps
     repoURL: https://github.com/ylascombe/local-k8s-terraform
     targetRevision: main
   syncPolicy:
