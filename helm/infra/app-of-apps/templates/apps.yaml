@@ -18,6 +18,7 @@ spec:
   - https://github.com/ylascombe/local-k8s-terraform
   - https://stefanprodan.github.io/podinfo
   - https://prometheus-community.github.io/helm-charts
+  - https://p80n.github.io/photoprism-helm/
 status: {}
 ---
 apiVersion: argoproj.io/v1alpha1

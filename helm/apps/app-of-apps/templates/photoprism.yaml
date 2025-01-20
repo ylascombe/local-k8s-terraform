@@ -6,8 +6,8 @@ kind: Application
 metadata:
   name: photoprism
 spec:
-  destination:
-    name: 'photoprism'
+  destination:  
+    name: ''
     namespace: photoprism
     server: https://kubernetes.default.svc
   source:
