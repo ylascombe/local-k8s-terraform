@@ -18,7 +18,6 @@ spec:
   - https://github.com/ylascombe/local-k8s-terraform
   - https://charts.jetstack.io
   - %{ if ingress_controller_type == "kong" }https://charts.konghq.com%{ else }https://github.com/kubernetes/ingress-nginx/%{ endif }
-  - https://gitlab.bootstrap.g2g.platform.thalesdigital.io/bootstrap/*.git
   - https://bitnami-labs.github.io/sealed-secrets
   - https://prometheus-community.github.io/helm-charts
 ---
