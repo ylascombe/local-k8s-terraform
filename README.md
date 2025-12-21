@@ -2,7 +2,7 @@
 # Prerequisites
 
 * kind
-* OpenTofu 1.6.0 (tested also with terraform >= v1.0.5)
+* OpenTofu 1.11.0 (tested also with terraform >= v1.0.5)
 * Generate specific certificate with following commands:
 
 ```sh
